@@ -18,11 +18,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="166" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="2fI-Tl-SnD">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="88" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="2fI-Tl-SnD">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="BusinessCell" id="i99-V5-CG9" customClass="BusinessCell">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="BusinessCell" rowHeight="88" id="i99-V5-CG9" customClass="BusinessCell">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="i99-V5-CG9" id="Cgd-F3-Kxo">
@@ -52,30 +52,45 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
+                                                    <variation key="widthClass=compact" ambiguous="YES" misplaced="YES">
+                                                        <rect key="frame" x="86" y="8" width="41" height="18"/>
+                                                    </variation>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Thai, Seafood, Salad" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D7X-Nx-kGm" userLabel="Categories">
                                                     <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
+                                                    <variation key="widthClass=compact" ambiguous="YES" misplaced="YES">
+                                                        <rect key="frame" x="86" y="65" width="116" height="15"/>
+                                                    </variation>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1000 reviews" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Zq-tb-MJb" userLabel="Reviews">
                                                     <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
+                                                    <variation key="widthClass=compact" ambiguous="YES" misplaced="YES">
+                                                        <rect key="frame" x="178" y="29" width="79" height="16"/>
+                                                    </variation>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.07 mi" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uZn-Mg-Q6B" userLabel="Distance">
                                                     <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <color key="textColor" red="0.23044902146464652" green="0.23044902146464652" blue="0.23044902146464652" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
+                                                    <variation key="widthClass=compact" misplaced="YES">
+                                                        <rect key="frame" x="270" y="12" width="42" height="15"/>
+                                                    </variation>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$$" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Etp-gh-xwl" userLabel="Money">
                                                     <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <color key="textColor" red="0.23044902149999999" green="0.23044902149999999" blue="0.23044902149999999" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
+                                                    <variation key="widthClass=compact" misplaced="YES">
+                                                        <rect key="frame" x="298" y="30" width="14" height="15"/>
+                                                    </variation>
                                                 </label>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ODl-yD-6ES" userLabel="Rating">
                                                     <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
@@ -89,7 +104,8 @@
                                                             <exclude reference="pbW-es-bVA"/>
                                                         </mask>
                                                     </variation>
-                                                    <variation key="widthClass=compact">
+                                                    <variation key="widthClass=compact" ambiguous="YES" misplaced="YES">
+                                                        <rect key="frame" x="86" y="28" width="84" height="17"/>
                                                         <mask key="constraints">
                                                             <include reference="4Mv-65-EVe"/>
                                                             <include reference="pbW-es-bVA"/>
@@ -101,6 +117,9 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
+                                                    <variation key="widthClass=compact" ambiguous="YES" misplaced="YES">
+                                                        <rect key="frame" x="86" y="48" width="155" height="15"/>
+                                                    </variation>
                                                 </label>
                                             </subviews>
                                             <constraints>
@@ -138,27 +157,27 @@
                                                     <exclude reference="ZQD-qO-mu9"/>
                                                 </mask>
                                                 <mask key="constraints">
-                                                    <exclude reference="6uI-1t-7CP"/>
-                                                    <exclude reference="xJV-H0-Qke"/>
-                                                    <exclude reference="yqg-qh-mED"/>
-                                                    <exclude reference="eqd-1W-bi1"/>
-                                                    <exclude reference="jz6-do-nds"/>
-                                                    <exclude reference="JlP-gO-LNC"/>
-                                                    <exclude reference="qex-Ud-hmP"/>
-                                                    <exclude reference="LC9-Qz-Brn"/>
-                                                    <exclude reference="kc8-8K-74l"/>
-                                                    <exclude reference="uQ5-cA-xd0"/>
+                                                    <exclude reference="LsH-aV-nKm"/>
+                                                    <exclude reference="pOS-k8-JmJ"/>
                                                     <exclude reference="2m2-En-3fv"/>
                                                     <exclude reference="Mbz-wg-LLM"/>
                                                     <exclude reference="Uah-UN-Q9R"/>
                                                     <exclude reference="u48-Au-PK1"/>
-                                                    <exclude reference="LsH-aV-nKm"/>
-                                                    <exclude reference="pOS-k8-JmJ"/>
+                                                    <exclude reference="IP1-7X-2Vo"/>
+                                                    <exclude reference="p8o-vD-1BS"/>
+                                                    <exclude reference="eqd-1W-bi1"/>
+                                                    <exclude reference="jz6-do-nds"/>
+                                                    <exclude reference="LC9-Qz-Brn"/>
+                                                    <exclude reference="kc8-8K-74l"/>
+                                                    <exclude reference="uQ5-cA-xd0"/>
                                                     <exclude reference="HCH-IH-RRi"/>
                                                     <exclude reference="ZeG-CZ-vQu"/>
                                                     <exclude reference="tTg-1p-dZS"/>
-                                                    <exclude reference="IP1-7X-2Vo"/>
-                                                    <exclude reference="p8o-vD-1BS"/>
+                                                    <exclude reference="JlP-gO-LNC"/>
+                                                    <exclude reference="qex-Ud-hmP"/>
+                                                    <exclude reference="6uI-1t-7CP"/>
+                                                    <exclude reference="xJV-H0-Qke"/>
+                                                    <exclude reference="yqg-qh-mED"/>
                                                 </mask>
                                             </variation>
                                             <variation key="widthClass=compact">
@@ -173,27 +192,27 @@
                                                     <include reference="ZQD-qO-mu9"/>
                                                 </mask>
                                                 <mask key="constraints">
-                                                    <include reference="6uI-1t-7CP"/>
-                                                    <include reference="xJV-H0-Qke"/>
-                                                    <include reference="yqg-qh-mED"/>
-                                                    <include reference="eqd-1W-bi1"/>
-                                                    <include reference="jz6-do-nds"/>
-                                                    <include reference="JlP-gO-LNC"/>
-                                                    <include reference="qex-Ud-hmP"/>
-                                                    <include reference="LC9-Qz-Brn"/>
-                                                    <include reference="kc8-8K-74l"/>
-                                                    <include reference="uQ5-cA-xd0"/>
+                                                    <include reference="LsH-aV-nKm"/>
+                                                    <include reference="pOS-k8-JmJ"/>
                                                     <include reference="2m2-En-3fv"/>
                                                     <include reference="Mbz-wg-LLM"/>
                                                     <include reference="Uah-UN-Q9R"/>
                                                     <include reference="u48-Au-PK1"/>
-                                                    <include reference="LsH-aV-nKm"/>
-                                                    <include reference="pOS-k8-JmJ"/>
+                                                    <include reference="IP1-7X-2Vo"/>
+                                                    <include reference="p8o-vD-1BS"/>
+                                                    <include reference="eqd-1W-bi1"/>
+                                                    <include reference="jz6-do-nds"/>
+                                                    <include reference="LC9-Qz-Brn"/>
+                                                    <include reference="kc8-8K-74l"/>
+                                                    <include reference="uQ5-cA-xd0"/>
                                                     <include reference="HCH-IH-RRi"/>
                                                     <include reference="ZeG-CZ-vQu"/>
                                                     <include reference="tTg-1p-dZS"/>
-                                                    <include reference="IP1-7X-2Vo"/>
-                                                    <include reference="p8o-vD-1BS"/>
+                                                    <include reference="JlP-gO-LNC"/>
+                                                    <include reference="qex-Ud-hmP"/>
+                                                    <include reference="6uI-1t-7CP"/>
+                                                    <include reference="xJV-H0-Qke"/>
+                                                    <include reference="yqg-qh-mED"/>
                                                 </mask>
                                             </variation>
                                         </tableViewCellContentView>
