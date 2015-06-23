@@ -21,7 +21,11 @@
 
 @implementation BusinessCell
 - (void)awakeFromNib {
+    // Fix the auto-layout bug for text-wrapping
+    //self.nameLabel.preferredMaxLayoutWidth = self.nameLabel.frame.size.width;
     
+    self.thumbImageView.layer.cornerRadius = 3;
+    self.thumbImageView.clipsToBounds = YES;
 }
 
 /**

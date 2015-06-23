@@ -18,6 +18,8 @@
 		5E7505C71B390FB900F56D96 /* SearchResultVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E7505C61B390FB900F56D96 /* SearchResultVC.m */; };
 		5E7505CA1B39158100F56D96 /* Business.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E7505C91B39158100F56D96 /* Business.m */; };
 		5EDFD4781B399CC1000F9E62 /* BusinessCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EDFD4771B399CC1000F9E62 /* BusinessCell.m */; };
+		5EDFD4AF1B39CF5A000F9E62 /* SearchResultTitleBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EDFD4AD1B39CF5A000F9E62 /* SearchResultTitleBarView.m */; };
+		5EDFD4B01B39CF5A000F9E62 /* SearchResultTitleBarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5EDFD4AE1B39CF5A000F9E62 /* SearchResultTitleBarView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +54,9 @@
 		5E7505C91B39158100F56D96 /* Business.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Business.m; sourceTree = "<group>"; };
 		5EDFD4761B399CC1000F9E62 /* BusinessCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusinessCell.h; sourceTree = "<group>"; };
 		5EDFD4771B399CC1000F9E62 /* BusinessCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusinessCell.m; sourceTree = "<group>"; };
+		5EDFD4AC1B39CF5A000F9E62 /* SearchResultTitleBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchResultTitleBarView.h; sourceTree = "<group>"; };
+		5EDFD4AD1B39CF5A000F9E62 /* SearchResultTitleBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchResultTitleBarView.m; sourceTree = "<group>"; };
+		5EDFD4AE1B39CF5A000F9E62 /* SearchResultTitleBarView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchResultTitleBarView.xib; sourceTree = "<group>"; };
 		A14E5423A215AC51C4D8DA5B /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -106,6 +111,7 @@
 		5E38EBA81B3900CE00A37ADE /* YelpApiExercise */ = {
 			isa = PBXGroup;
 			children = (
+				5EDFD4AB1B39CE6D000F9E62 /* View */,
 				5E38EBD21B390A7000A37ADE /* YelpClient.h */,
 				5E38EBD31B390A7000A37ADE /* YelpClient.m */,
 				5E38EBAD1B3900CE00A37ADE /* AppDelegate.h */,
@@ -148,6 +154,16 @@
 				5E38EBC41B3900CE00A37ADE /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		5EDFD4AB1B39CE6D000F9E62 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				5EDFD4AC1B39CF5A000F9E62 /* SearchResultTitleBarView.h */,
+				5EDFD4AD1B39CF5A000F9E62 /* SearchResultTitleBarView.m */,
+				5EDFD4AE1B39CF5A000F9E62 /* SearchResultTitleBarView.xib */,
+			);
+			name = View;
 			sourceTree = "<group>";
 		};
 		79C70B47503B72647F0A7F3C /* Frameworks */ = {
@@ -240,6 +256,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5EDFD4B01B39CF5A000F9E62 /* SearchResultTitleBarView.xib in Resources */,
 				5E38EBB51B3900CE00A37ADE /* Main.storyboard in Resources */,
 				5E38EBBA1B3900CE00A37ADE /* LaunchScreen.xib in Resources */,
 				5E38EBB71B3900CE00A37ADE /* Images.xcassets in Resources */,
@@ -296,6 +313,7 @@
 				5E7505CA1B39158100F56D96 /* Business.m in Sources */,
 				5E38EBD41B390A7000A37ADE /* YelpClient.m in Sources */,
 				5E7505C71B390FB900F56D96 /* SearchResultVC.m in Sources */,
+				5EDFD4AF1B39CF5A000F9E62 /* SearchResultTitleBarView.m in Sources */,
 				5E38EBAF1B3900CE00A37ADE /* AppDelegate.m in Sources */,
 				5E38EBAC1B3900CE00A37ADE /* main.m in Sources */,
 				5EDFD4781B399CC1000F9E62 /* BusinessCell.m in Sources */,

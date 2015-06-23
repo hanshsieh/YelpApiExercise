@@ -10,8 +10,9 @@
 #import "YelpClient.h"
 #import "Business.h"
 #import "BusinessCell.h"
+#import "SearchResultTitleBarView.h"
 
-@interface SearchResultVC () <UITableViewDataSource, UITableViewDelegate>
+@interface SearchResultVC () <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, SearchResultTitleBarDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) YelpClient *client;
 @property (strong, nonatomic) NSArray *businesses;
@@ -31,6 +32,22 @@ NSString * const kYelpTokenSecret = @"SeMVKcy4JQIrK4GTnyTs12pxBYE";
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     self.client = [[YelpClient alloc] initWithConsumerKey:kYelpConsumerKey consumerSecret:kYelpConsumerSecret accessToken:kYelpToken accessSecret:kYelpTokenSecret];
+    
+    // Setup search bar
+    /*UISearchBar *searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(-5.0, 0.0, 310.0, 44.0)];
+    searchBar.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+    UIView *searchBarView = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 300.0, 44.0)];
+    searchBarView.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin;
+    searchBar.delegate = self;
+    [searchBar setBackgroundImage:[UIImage new]];
+    [searchBarView addSubview:searchBar];
+    self.navigationItem.titleView = searchBarView;*/
+    SearchResultTitleBarView *searchBar = [[[NSBundle mainBundle] loadNibNamed:@"SearchResultTitleBarView" owner:self options:nil] objectAtIndex:0];
+//    searchBar.delegate = self;
+//    [searchBar setBackgroundImage:[UIImage new]];
+    //searchBar.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
+    searchBar.delegate = self;
+    self.navigationItem.titleView = searchBar;
     
     [self.client searchWithTerm:@"Thai" success:^(AFHTTPRequestOperation *operation, id response) {
         //NSLog(@"response: %@", response);
@@ -56,6 +73,10 @@ NSString * const kYelpTokenSecret = @"SeMVKcy4JQIrK4GTnyTs12pxBYE";
     Business *business = self.businesses[indexPath.row];
     cell.business = business;
     return cell;
+}
+
+- (void)filterClicked:(SearchResultTitleBarView *) view {
+    NSLog(@"Filter clicked");
 }
 
 @end
