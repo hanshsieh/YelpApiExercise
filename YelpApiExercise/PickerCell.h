@@ -13,7 +13,8 @@
 @protocol PickerCellDelegate
 @required
 - (NSInteger)numberOfRowsInPickerCell:(PickerCell*)pickerCell;
-- (NSString*)titleForRowInPickerCell:(PickerCell*)pickerCell;
+- (NSString*)pickerCell:(PickerCell*)pickerCell titleForRow:(NSInteger)row;
+- (void)pickerCell:(PickerCell *)pickerCell didSelectRow:(NSInteger)row;
 @end
     
 @interface PickerCell : UITableViewCell

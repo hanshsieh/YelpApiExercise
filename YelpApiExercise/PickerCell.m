@@ -39,7 +39,11 @@
 }
 
 - (NSString *)pickerView:(UIPickerView *)thePickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
-    return [self.delegate titleForRowInPickerCell:self];
+    return [self.delegate pickerCell:self titleForRow:row];
+}
+
+- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
+    return [self.delegate pickerCell:self didSelectRow:row];
 }
 
 - (void)reloadData {

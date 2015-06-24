@@ -18,6 +18,7 @@
 @property (strong, nonatomic) NSArray *categories;
 @property (strong, nonatomic) NSArray *distances;
 @property (strong, nonatomic) NSMutableSet *selectedCategories;
+@property (assign, nonatomic) long selectedDistance;
 @property (strong, nonatomic) NSArray *sections;
 @end
 
@@ -97,8 +98,24 @@
     return 5;
 }
 
-- (NSString*)titleForRowInPickerCell:(PickerCell*)pickerCell {
-    return @"Test";
+- (NSString*)pickerCell:(PickerCell *)pickerCell titleForRow:(NSInteger)row {
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:pickerCell];
+    NSInteger section = indexPath.section;
+    NSString *sectionId = self.sections[section][@"id"];
+    if ([@"distance" isEqualToString:sectionId]) {
+        return self.distances[row][@"title"];
+    } else {
+        return nil;
+    }
+}
+
+- (void)pickerCell:(PickerCell *)pickerCell didSelectRow:(NSInteger)row {
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:pickerCell];
+    NSInteger section = indexPath.section;
+    NSString *sectionId = self.sections[section][@"id"];
+    if ([@"distance" isEqualToString:sectionId]) {
+        self.selectedDistance = [self.distances[row][@"distance"] integerValue];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -184,6 +201,7 @@
           @"distance": @(1500)
           }
       ];
+    self.selectedDistance = -1;
 }
 
 - (NSDictionary *)filters {
@@ -195,6 +213,10 @@
         }
         NSString *categoryFilter = [names componentsJoinedByString:@","];
         [filters setObject:categoryFilter forKey:@"category_filter"];
+    }
+    if (self.selectedDistance >= 0) {
+        NSString *distanceStr = [NSString stringWithFormat:@"%ld", self.selectedDistance];
+        [filters setObject:distanceStr forKey:@"radius_filter"];
     }
     return filters;
 }
