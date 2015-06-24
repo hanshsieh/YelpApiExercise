@@ -18,5 +18,7 @@
 @end
 
 @interface SearchResultTitleBarView : UITableViewCell
+
 @property (weak, nonatomic) id<SearchResultTitleBarDelegate> delegate;
+
 @end

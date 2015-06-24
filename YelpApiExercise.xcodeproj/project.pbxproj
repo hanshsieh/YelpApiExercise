@@ -15,6 +15,12 @@
 		5E38EBBA1B3900CE00A37ADE /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E38EBB81B3900CE00A37ADE /* LaunchScreen.xib */; };
 		5E38EBC61B3900CE00A37ADE /* YelpApiExerciseTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E38EBC51B3900CE00A37ADE /* YelpApiExerciseTests.m */; };
 		5E38EBD41B390A7000A37ADE /* YelpClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E38EBD31B390A7000A37ADE /* YelpClient.m */; };
+		5E56F7191B3AE258009A725C /* FiltersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E56F7171B3AE258009A725C /* FiltersViewController.m */; };
+		5E56F71A1B3AE258009A725C /* FiltersViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E56F7181B3AE258009A725C /* FiltersViewController.xib */; };
+		5E56F7211B3AE706009A725C /* SwitchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E56F71F1B3AE706009A725C /* SwitchCell.m */; };
+		5E56F7221B3AE706009A725C /* SwitchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E56F7201B3AE706009A725C /* SwitchCell.xib */; };
+		5E56F7261B3B009F009A725C /* PickerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E56F7241B3B009F009A725C /* PickerCell.m */; };
+		5E56F7271B3B009F009A725C /* PickerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E56F7251B3B009F009A725C /* PickerCell.xib */; };
 		5E7505C71B390FB900F56D96 /* SearchResultVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E7505C61B390FB900F56D96 /* SearchResultVC.m */; };
 		5E7505CA1B39158100F56D96 /* Business.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E7505C91B39158100F56D96 /* Business.m */; };
 		5EDFD4781B399CC1000F9E62 /* BusinessCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EDFD4771B399CC1000F9E62 /* BusinessCell.m */; };
@@ -48,6 +54,15 @@
 		5E38EBC51B3900CE00A37ADE /* YelpApiExerciseTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YelpApiExerciseTests.m; sourceTree = "<group>"; };
 		5E38EBD21B390A7000A37ADE /* YelpClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YelpClient.h; sourceTree = "<group>"; };
 		5E38EBD31B390A7000A37ADE /* YelpClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YelpClient.m; sourceTree = "<group>"; };
+		5E56F7161B3AE258009A725C /* FiltersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FiltersViewController.h; sourceTree = "<group>"; };
+		5E56F7171B3AE258009A725C /* FiltersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FiltersViewController.m; sourceTree = "<group>"; };
+		5E56F7181B3AE258009A725C /* FiltersViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FiltersViewController.xib; sourceTree = "<group>"; };
+		5E56F71E1B3AE706009A725C /* SwitchCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwitchCell.h; sourceTree = "<group>"; };
+		5E56F71F1B3AE706009A725C /* SwitchCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwitchCell.m; sourceTree = "<group>"; };
+		5E56F7201B3AE706009A725C /* SwitchCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SwitchCell.xib; sourceTree = "<group>"; };
+		5E56F7231B3B009F009A725C /* PickerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PickerCell.h; sourceTree = "<group>"; };
+		5E56F7241B3B009F009A725C /* PickerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PickerCell.m; sourceTree = "<group>"; };
+		5E56F7251B3B009F009A725C /* PickerCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PickerCell.xib; sourceTree = "<group>"; };
 		5E7505C51B390FB900F56D96 /* SearchResultVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchResultVC.h; sourceTree = "<group>"; };
 		5E7505C61B390FB900F56D96 /* SearchResultVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchResultVC.m; sourceTree = "<group>"; };
 		5E7505C81B39158100F56D96 /* Business.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Business.h; sourceTree = "<group>"; };
@@ -126,6 +141,9 @@
 				5E7505C91B39158100F56D96 /* Business.m */,
 				5EDFD4761B399CC1000F9E62 /* BusinessCell.h */,
 				5EDFD4771B399CC1000F9E62 /* BusinessCell.m */,
+				5E56F7161B3AE258009A725C /* FiltersViewController.h */,
+				5E56F7171B3AE258009A725C /* FiltersViewController.m */,
+				5E56F7181B3AE258009A725C /* FiltersViewController.xib */,
 			);
 			path = YelpApiExercise;
 			sourceTree = "<group>";
@@ -162,6 +180,12 @@
 				5EDFD4AC1B39CF5A000F9E62 /* SearchResultTitleBarView.h */,
 				5EDFD4AD1B39CF5A000F9E62 /* SearchResultTitleBarView.m */,
 				5EDFD4AE1B39CF5A000F9E62 /* SearchResultTitleBarView.xib */,
+				5E56F71E1B3AE706009A725C /* SwitchCell.h */,
+				5E56F71F1B3AE706009A725C /* SwitchCell.m */,
+				5E56F7201B3AE706009A725C /* SwitchCell.xib */,
+				5E56F7231B3B009F009A725C /* PickerCell.h */,
+				5E56F7241B3B009F009A725C /* PickerCell.m */,
+				5E56F7251B3B009F009A725C /* PickerCell.xib */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -258,8 +282,11 @@
 			files = (
 				5EDFD4B01B39CF5A000F9E62 /* SearchResultTitleBarView.xib in Resources */,
 				5E38EBB51B3900CE00A37ADE /* Main.storyboard in Resources */,
+				5E56F71A1B3AE258009A725C /* FiltersViewController.xib in Resources */,
 				5E38EBBA1B3900CE00A37ADE /* LaunchScreen.xib in Resources */,
 				5E38EBB71B3900CE00A37ADE /* Images.xcassets in Resources */,
+				5E56F7221B3AE706009A725C /* SwitchCell.xib in Resources */,
+				5E56F7271B3B009F009A725C /* PickerCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -312,9 +339,12 @@
 			files = (
 				5E7505CA1B39158100F56D96 /* Business.m in Sources */,
 				5E38EBD41B390A7000A37ADE /* YelpClient.m in Sources */,
+				5E56F7191B3AE258009A725C /* FiltersViewController.m in Sources */,
+				5E56F7261B3B009F009A725C /* PickerCell.m in Sources */,
 				5E7505C71B390FB900F56D96 /* SearchResultVC.m in Sources */,
 				5EDFD4AF1B39CF5A000F9E62 /* SearchResultTitleBarView.m in Sources */,
 				5E38EBAF1B3900CE00A37ADE /* AppDelegate.m in Sources */,
+				5E56F7211B3AE706009A725C /* SwitchCell.m in Sources */,
 				5E38EBAC1B3900CE00A37ADE /* main.m in Sources */,
 				5EDFD4781B399CC1000F9E62 /* BusinessCell.m in Sources */,
 			);
