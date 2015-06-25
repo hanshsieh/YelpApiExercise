@@ -17,6 +17,9 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) YelpClient *client;
 @property (strong, nonatomic) NSArray *businesses;
+@property (strong, nonatomic) NSArray *searchedBusinesses;
+@property (strong, nonatomic) NSDictionary *filters;
+@property (strong, nonatomic) UISearchBar *searchBar;
 - (void)fetchBusinessesWithQuery:(NSString*)query params:(NSDictionary *)params;
 @end
 
@@ -26,32 +29,66 @@ NSString * const kYelpConsumerSecret = @"8rTF8KMMcZpAaWe1yyEebVk7lDc";
 NSString * const kYelpToken = @"DnKGwo-syhDRQSAYCW6D8WPrO9KOXIkV";
 NSString * const kYelpTokenSecret = @"SeMVKcy4JQIrK4GTnyTs12pxBYE";
 
+#pragma mark - Private methods
+
+#pragma mark Life cycle
+
+- (instancetype)initWithCoder:(NSCoder*) coder {
+    self = [super initWithCoder:coder];
+    NSLog(@"initialized with coder");
+    return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    //self.tableView.estimatedRowHeight = 200.0;
-    //self.tableView.rowHeight = UITableViewAutomaticDimension;
-    //self.tableView.rowHeight = UITableViewAutomaticDimension;
+    
+    // Intialize the view
+    self.filters = nil;
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
-    self.client = [[YelpClient alloc] initWithConsumerKey:kYelpConsumerKey consumerSecret:kYelpConsumerSecret accessToken:kYelpToken accessSecret:kYelpTokenSecret];
-    
-    // Setup search bar
-    /*UISearchBar *searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(-5.0, 0.0, 310.0, 44.0)];
-    searchBar.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-    UIView *searchBarView = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 300.0, 44.0)];
-    searchBarView.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin;
-    searchBar.delegate = self;
-    [searchBar setBackgroundImage:[UIImage new]];
-    [searchBarView addSubview:searchBar];
-    self.navigationItem.titleView = searchBarView;*/
-    //SearchResultTitleBarView *searchBar = [[[NSBundle mainBundle] loadNibNamed:@"SearchResultTitleBarView" owner:self options:nil] objectAtIndex:0];
-//    searchBar.delegate = self;
-//    [searchBar setBackgroundImage:[UIImage new]];
-    //searchBar.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
-    //searchBar.delegate = self;
-    //self.navigationItem.titleView = searchBar;
-    [self fetchBusinessesWithQuery:@"Restaurants" params:nil];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Filter" style:UIBarButtonItemStylePlain target:self action:@selector(onFilterButton)];
+    UISearchBar *searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0.0, 0.0, 0, 0)];
+    self.navigationItem.titleView = searchBar;
+    searchBar.showsCancelButton = YES;
+    searchBar.delegate = self;
+    self.searchBar = searchBar;
+    self.client = [[YelpClient alloc] initWithConsumerKey:kYelpConsumerKey
+                                           consumerSecret:kYelpConsumerSecret
+                                           accessToken:kYelpToken
+                                           accessSecret:kYelpTokenSecret];
+    
+    // Initialize the data
+    [self fetchBusinessesWithQuery:nil params:nil];
+}
+
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+# pragma mark Search bar
+
+//search button was tapped
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
+    [self handleSearch:searchBar];
+}
+
+//user finished editing the search text
+- (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar {
+    [self handleSearch:searchBar];
+}
+
+- (void)searchBarCancelButtonClicked:(UISearchBar *) searchBar {
+    NSLog(@"User canceled search");
+    searchBar.text = @"";
+    [self handleSearch:searchBar];
+}
+
+- (void)handleSearch:(UISearchBar *)searchBar {
+    [searchBar resignFirstResponder];
+    NSString *searchStr = searchBar.text;
+    [self fetchBusinessesWithQuery:searchStr params:self.filters];
 }
 
 - (void)fetchBusinessesWithQuery:(NSString *)query params:(NSDictionary *)params {
@@ -66,14 +103,12 @@ NSString * const kYelpTokenSecret = @"SeMVKcy4JQIrK4GTnyTs12pxBYE";
     NSLog(@"Query is sent");
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.businesses.count;
 }
+
+#pragma mark Table view
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     BusinessCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"BusinessCell"];
@@ -92,7 +127,9 @@ NSString * const kYelpTokenSecret = @"SeMVKcy4JQIrK4GTnyTs12pxBYE";
 
 - (void)filtersViewController:(FiltersViewController *)filtersViewController didChangeFilters:(NSDictionary *)filters {
     NSLog(@"Filters updated: %@", filters);
-    [self fetchBusinessesWithQuery:@"Restaurants" params:filters];
+    self.searchBar.text = @"";
+    self.filters = filters;
+    [self fetchBusinessesWithQuery:nil params:filters];
 }
 
 @end

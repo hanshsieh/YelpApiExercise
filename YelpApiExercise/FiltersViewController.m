@@ -17,12 +17,17 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSArray *categories;
 @property (strong, nonatomic) NSArray *distances;
+@property (strong, nonatomic) NSArray *sections;
+@property (strong, nonatomic) NSArray *sorts;
 @property (strong, nonatomic) NSMutableSet *selectedCategories;
 @property (assign, nonatomic) long selectedDistance;
-@property (strong, nonatomic) NSArray *sections;
+@property (assign, nonatomic) BOOL filterDeals;
+@property (assign, nonatomic) NSInteger selectedSort;
 @end
 
 @implementation FiltersViewController
+
+#pragma mark Life cycle
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -31,6 +36,9 @@
         [self initSections];
         [self initCategories];
         [self initDistances];
+        [self initSort];
+        self.filterDeals = NO;
+        self.selectedSort = 0;
     }
     return self;
 }
@@ -43,10 +51,20 @@
     
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
+    self.tableView.estimatedRowHeight = 120;
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
     
     [self.tableView registerNib:[UINib nibWithNibName:@"SwitchCell" bundle:nil] forCellReuseIdentifier:@"SwitchCell"];
     [self.tableView registerNib:[UINib nibWithNibName:@"PickerCell" bundle:nil] forCellReuseIdentifier:@"PickerCell"];
 }
+
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+#pragma mark Table view
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return self.sections.count;
@@ -57,7 +75,10 @@
     if ([@"category" isEqualToString:sectionId]) {
         return self.categories.count;
     } else if ([@"distance" isEqualToString:sectionId]){
-        //return self.distances.count;
+        return 1;
+    } else if ([@"deals" isEqualToString:sectionId]) {
+        return 1;
+    } else if ([@"sort" isEqualToString:sectionId]) {
         return 1;
     }
     return 0;
@@ -68,14 +89,25 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSString *sectionId = self.sections[indexPath.section][@"id"];
+    NSString *sectionId = [self idForSection:indexPath.section];
     if ([@"category" isEqualToString:sectionId]) {
         SwitchCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"SwitchCell"];
         cell.titleLabel.text = self.categories[indexPath.row][@"name"];
         cell.on = [self.selectedCategories containsObject:self.categories[indexPath.row]];
         cell.delegate = self;
         return cell;
-    } if ([@"distance" isEqualToString:sectionId]) {
+    } else if ([@"distance" isEqualToString:sectionId]) {
+        PickerCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"PickerCell"];
+        cell.delegate = self;
+        [cell reloadData];
+        return cell;
+    } else if ([@"deals" isEqualToString:sectionId]) {
+        SwitchCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"SwitchCell"];
+        cell.titleLabel.text = @"Filter deals";
+        cell.on = self.filterDeals;
+        cell.delegate = self;
+        return cell;
+    } else if ([@"sort" isEqualToString:sectionId]) {
         PickerCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"PickerCell"];
         cell.delegate = self;
         [cell reloadData];
@@ -85,25 +117,43 @@
     }
 }
 
+#pragma mark Switch cell
+
 - (void)switchCell:(SwitchCell *)cell didUpdateValue:(BOOL)value {
     NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
-    if (value) {
-        [self.selectedCategories addObject:self.categories[indexPath.row]];
-    } else {
-        [self.selectedCategories removeObject:self.categories[indexPath.row]];
+    NSString *sectionId = [self idForSection:indexPath.section];
+    if ([@"category" isEqualToString:sectionId]) {
+        if (value) {
+            [self.selectedCategories addObject:self.categories[indexPath.row]];
+        } else {
+            [self.selectedCategories removeObject:self.categories[indexPath.row]];
+        }
+    } else if ([@"deals" isEqualToString:sectionId]) {
+        self.filterDeals = value;
     }
 }
 
+#pragma mark Picker cell
+
 - (NSInteger)numberOfRowsInPickerCell:(PickerCell*)pickerCell {
-    return 5;
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:pickerCell];
+    NSString *sectionId = [self idForSection:indexPath.section];
+    if ([@"distance" isEqualToString:sectionId]) {
+        return self.distances.count;
+    } else if ([@"sort" isEqualToString:sectionId]){
+        return self.sorts.count;
+    } else {
+        return 0;
+    }
 }
 
 - (NSString*)pickerCell:(PickerCell *)pickerCell titleForRow:(NSInteger)row {
     NSIndexPath *indexPath = [self.tableView indexPathForCell:pickerCell];
-    NSInteger section = indexPath.section;
-    NSString *sectionId = self.sections[section][@"id"];
+    NSString *sectionId = [self idForSection:indexPath.section];
     if ([@"distance" isEqualToString:sectionId]) {
         return self.distances[row][@"title"];
+    } else if ([@"sort" isEqualToString:sectionId]) {
+        return self.sorts[row][@"title"];
     } else {
         return nil;
     }
@@ -111,16 +161,12 @@
 
 - (void)pickerCell:(PickerCell *)pickerCell didSelectRow:(NSInteger)row {
     NSIndexPath *indexPath = [self.tableView indexPathForCell:pickerCell];
-    NSInteger section = indexPath.section;
-    NSString *sectionId = self.sections[section][@"id"];
+    NSString *sectionId = [self idForSection:indexPath.section];
     if ([@"distance" isEqualToString:sectionId]) {
         self.selectedDistance = [self.distances[row][@"distance"] integerValue];
+    } else if ([@"sort" isEqualToString:sectionId]) {
+        self.selectedSort = [self.sorts[row][@"value"] integerValue];
     }
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 - (void)onCancelButton {
@@ -143,6 +189,14 @@
       @{
           @"id": @"distance",
           @"title": @"Distance"
+          },
+      @{
+          @"id": @"deals",
+          @"title": @"Filter deals"
+          },
+      @{
+          @"id": @"sort",
+          @"title": @"Sort"
           }
       ];
 }
@@ -204,6 +258,24 @@
     self.selectedDistance = -1;
 }
 
+- (void)initSort {
+    self.sorts =
+    @[
+      @{
+          @"title": @"Best matched",
+          @"value": @(0)
+          },
+      @{
+          @"title": @"Distance",
+          @"value": @(1)
+          },
+      @{
+          @"title": @"Highest rated",
+          @"value": @(2)
+          }
+      ];
+}
+
 - (NSDictionary *)filters {
     NSMutableDictionary *filters = [NSMutableDictionary dictionary];
     if (self.selectedCategories.count > 0) {
@@ -218,7 +290,18 @@
         NSString *distanceStr = [NSString stringWithFormat:@"%ld", self.selectedDistance];
         [filters setObject:distanceStr forKey:@"radius_filter"];
     }
+    if (self.filterDeals) {
+        [filters setObject:@"true" forKey:@"deals_filter"];
+    } else {
+        [filters setObject:@"false" forKey:@"deals_filter"];
+    }
+    [filters setObject:@(self.selectedSort) forKey:@"sort"];
     return filters;
+}
+
+
+- (NSString*)idForSection:(NSInteger)section {
+    return self.sections[section][@"id"];
 }
 
 /*
