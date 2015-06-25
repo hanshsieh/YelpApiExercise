@@ -31,7 +31,7 @@ Time spent: `10 hr`
 
 ### Walkthrough
 
-![Video Walkthrough](...)
+![Video Walkthrough](hw2_demo.gif)
 
 
 
